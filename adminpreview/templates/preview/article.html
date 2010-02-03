@@ -1,0 +1,25 @@
+<tr>
+	<td colspan="5">
+		<table>
+			<tr>
+				<td>
+					<img src="{{ object.image.featured.url }}">
+				</td>
+				<td>
+					Abstract:<br/>
+					{{ object.abstract }}
+				</td>
+				<td>
+					Author: {{ object.author }}<br/>
+					Published: {{ object.published_date }}<br/>
+					Category: {{ object.category }}<br/>
+					<br/>
+					Tags: {% for tag in object.get_tags %}
+							{{ tag }}
+							{% if not forloop.last %}, {% endif %}
+						  {% endfor %}
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
