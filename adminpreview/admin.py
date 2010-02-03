@@ -1,4 +1,6 @@
 class PreviewAdmin(admin.ModelAdmin):
+    #add to your ModelAdmin
+    #list_display = ('headline','created_date', 'state', 'admin_slide_preview')
     def admin_slide_preview(self, obj):
         return "<div class=\"previewslide\" id=\"%s/preview/\">+</div>" % obj.id
     admin_slide_preview.allow_tags = True

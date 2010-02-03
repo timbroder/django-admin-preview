@@ -6,6 +6,7 @@ To get inline Admin Previews in the list view
 Example for model Article
 
 class ArticleAdmin(PreviewAdmin, other admin.ModelAdmin,,,_):
+	list_display = (..,.., 'admin_slide_preview')
 	...
 	...
 
