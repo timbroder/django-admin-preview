@@ -14,7 +14,7 @@ class PreviewAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super(PreviewAdmin, self).get_urls()
         my_urls = patterns('',
-            (r'^(?P<object_id>\d+)/preview/$', self.get_preview),
+            (r'^(?P<object_id>\d+)/preview/$', self.admin_site.admin_view(self.get_preview)),
         )
         return my_urls + urls
     
