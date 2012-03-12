@@ -1,7 +1,8 @@
 To get inline Admin Previews in the list view
 
-1) Inherit from PreviewAdmin in your ModelAdmin
-2) In your model's template directory, create a folder called preview, and create a template for that model's preview
+1) Add adminpreview to your INSTALLED_APPS
+2) Inherit from PreviewAdmin in your ModelAdmin
+3) In your model's template directory, create a folder called preview, and create a template for that model's preview
 
 Example for model Article
 

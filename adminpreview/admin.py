@@ -1,7 +1,20 @@
+from django.contrib import admin
+from django.conf.urls.defaults import patterns, url
+from django.views.generic.list_detail import object_detail
+
 class PreviewAdmin(admin.ModelAdmin):
-    #add to your ModelAdmin
-    #list_display = ('headline','created_date', 'state', 'admin_slide_preview')
+    class Media:
+        js = ['js/jquery.adminpreview.js']
+        css = dict(
+            all = ['css/adminpreview.css']
+        )
+    
     def admin_slide_preview(self, obj):
+        """
+        Add this to your ModelAdmin:
+        
+        list_display = ('headline','created_date', 'state', 'admin_slide_preview')
+        """
         return "<div class=\"previewslide\" id=\"%s/preview/\">+</div>" % obj.id
     admin_slide_preview.allow_tags = True
     admin_slide_preview.short_description = 'Preview'
@@ -13,10 +26,6 @@ class PreviewAdmin(admin.ModelAdmin):
 
     def get_urls(self):
         my_urls = patterns('',
-            (r'^(?P<object_id>\d+)/preview/$', self.admin_site.admin_view(self.get_preview)),
+            url(r'^(?P<object_id>\d+)/preview/$', self.admin_site.admin_view(self.get_preview)),
         )
         return my_urls + super(PreviewAdmin, self).get_urls()
-
-    class Media:
-        js = ('js/jquery.js',
-              'js/jquery.adminpreview.js')
