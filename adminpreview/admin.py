@@ -1,7 +1,14 @@
 from django.contrib import admin
 from django.conf.urls.defaults import patterns, url
+from django.views.generic.list_detail import object_detail
 
 class PreviewAdmin(admin.ModelAdmin):
+    class Media:
+        js = ['js/jquery.adminpreview.js']
+        css = dict(
+            all = ['css/adminpreview.css']
+        )
+    
     def admin_slide_preview(self, obj):
         """
         Add this to your ModelAdmin:
@@ -22,7 +29,3 @@ class PreviewAdmin(admin.ModelAdmin):
             url(r'^(?P<object_id>\d+)/preview/$', self.admin_site.admin_view(self.get_preview)),
         )
         return my_urls + super(PreviewAdmin, self).get_urls()
-
-    class Media:
-        js = ('js/jquery.js',
-              'js/jquery.adminpreview.js')
