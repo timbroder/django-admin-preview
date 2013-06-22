@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.conf.urls.defaults import patterns, url
-from django.views.generic.list_detail import object_detail
+from django.views.generic.detail import DetailView
 
 class PreviewAdmin(admin.ModelAdmin):
     class Media:
@@ -22,7 +22,10 @@ class PreviewAdmin(admin.ModelAdmin):
     def get_preview(self, request, object_id):
         sub = self.queryset(request)[0]
         template = "preview/%s.html" % sub.__class__.__name__
-        return object_detail(request, queryset=self.queryset(request), object_id=object_id, template_name=template.lower())
+        class AdminPreview(DetailView):
+            queryset = self.queryset(request)
+            template_name = template.lower()
+        return AdminPreview.as_view()(request, pk=object_id)
 
     def get_urls(self):
         my_urls = patterns('',

@@ -10,9 +10,10 @@ def setup():
 	from setuptools import setup, find_packages
 	return setup(
 		name = "django-admin-preview",
-		version = "0.1",
+		version = "0.1.2",
 		
 		packages = find_packages(),
+		setup_requires = [ "setuptools_git >= 0.4.2", ],
 		install_requires = open('requirements.txt'),
 		entry_points = {
 			'setuptools.file_finders'	: [
