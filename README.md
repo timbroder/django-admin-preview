@@ -5,12 +5,12 @@ To get inline Admin Previews in the list view
 3) In your model's template directory, create a folder called preview, and create a template for that model's preview
 
 Example for model Article
-
+```python
 class ArticleAdmin(PreviewAdmin, other admin.ModelAdmin,,,_):
 	list_display = (..,.., 'admin_slide_preview')
 	...
 	...
-
+```
 then edit
 app_that_has_ArticleModel/templates/preview/article.html
 
