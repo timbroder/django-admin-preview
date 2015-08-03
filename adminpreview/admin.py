@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
 from django.views.generic.detail import DetailView
 
 class PreviewAdmin(admin.ModelAdmin):
